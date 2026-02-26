@@ -147,23 +147,41 @@ img {
 .gif-box {
     height: 360px;
     /* height: 200px; */
-    display: flex;
+    display: grid;
+    grid-template-rows: auto 1fr;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    padding: 12px 0;
     /* background-color: green; */
+}
+
+.gif-frame {
+    width: 320px;                  /* fixed width */
+    height: 220px;                 /* fixed height */
+    overflow: hidden;
+    border-radius: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .weather-gif {
     /* height: 100%; */
-    width: auto;
-    max-height:  60%;
+    /* width: auto; */
+    /* max-height:  60%; */
     /* max-width: 70%; */
-    border-radius: 25%;
+    /* border-radius: 25%; */
     /* object-fit: contain; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* text-align: center; */
+    /* background-color: red; */
 }
 
 .city-conditions {

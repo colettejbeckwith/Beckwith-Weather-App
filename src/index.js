@@ -12,6 +12,8 @@ let currentCity = "";
 
 let locationQuery = false;
 
+const searchInput = document.getElementById('location-entry-text-box');
+
 
 async function loadByCity(city) {
     try {
@@ -20,7 +22,8 @@ async function loadByCity(city) {
         const weather = normalizeVisualCrossing(raw, { unitGroup });
         currentCity = city;
         renderWeather(weather, unitGroup);
-        // displayGif(weather.current.icon);
+        locationQuery = false;
+        displayGif(weather.current.icon, currentCity);
     } catch (e) {
         renderError(e.message || "Something went wrong.");
     }
@@ -36,8 +39,9 @@ async function loadByCurrentLocation() {
                 const raw = await fetchTimelineByCoords(latitude, longitude, { unitGroup });
                 const weather = normalizeVisualCrossing(raw, { unitGroup });
                 currentCity = weather.location.name;
-                weather.location.name = "📍 Your Location";
+                weather.location.name = "Current Location";
                 renderWeather(weather, unitGroup);
+                displayGif(weather.current.icon, currentCity);
             } catch (e) {
                 renderError(e.message || "Couldn't load weather for your location.");
             }
@@ -54,13 +58,43 @@ function toggleUnits() {
     if (!locationQuery) loadByCity(currentCity);
 }
 
+
+
+searchInput.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+
+    const city = searchInput.value.trim();
+    if (!city) return;
+
+    locationQuery = false;
+    currentCity = city;
+    loadByCity(city);
+
+    searchInput.blur();
+    searchInput.value = "";
+    searchInput.placeholder = city;
+});
+
+searchInput.addEventListener("blur", () => {
+    const city = searchInput.value.trim();
+    if (!city) return;
+
+    locationQuery = false;
+    currentCity = city;
+    loadByCity(city);
+});
+
 document.getElementById('change-units-button').addEventListener('click', () => {
     toggleUnits();
 });
 
 document.getElementById('find-current-location-button').addEventListener('click', () => {
     locationQuery = true;
+    searchInput.value = "";
+    searchInput.placeholder = "Enter Location";
     loadByCurrentLocation();
 });
+
+
 
 loadByCity("Chicago, IL");

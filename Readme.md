@@ -1,6 +1,4 @@
-Visual Crossing API Key
-CQFX6K4NG3K3VKECYBU7EDXKA
-
-GIPHY API Key
-aCEUVcyEtmwVqcAUuDKst9xyES5HjLUR
-
+![Full Screen](./screenshots/full-screen-location.png)
+![Search By Location](./screenshots/phone-view-location-search.png)
+![Current Location Fahrenheit](./screenshots/phone-view-f.png)
+![Current Location Celsius](./screenshots/phone-view-c.png)

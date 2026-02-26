@@ -15,7 +15,7 @@
         <div class="weather-body">
             <div class="location-box">
                 <button id="change-units-button" class="my-location-box"><img src="./images/info.svg" alt="text"></button>
-                <input class="location-entry-text-box" type="text" placeholder="Enter Location">
+                <input class="location-entry-text-box" id="location-entry-text-box" type="text" placeholder="Enter Location">
                 <button id="find-current-location-button" class="my-location-box"><img src="./images/mylocation.svg" alt="text"></button>
             </div>
             <div class="city-box">
@@ -41,7 +41,9 @@
             </div>
             <div class="gif-box" id="gif-box">
                 <div class="city-conditions" id="city-conditions"></div>
-                <img class="weather-gif" id="weather-gif" src="#" alt="weather">
+                <div class="gif-frame">
+                    <img class="weather-gif" id="weather-gif" src="#" alt="weather">
+                </div>
             </div>
         </div>
         <div class="footer">© Beckwith Industries</div>

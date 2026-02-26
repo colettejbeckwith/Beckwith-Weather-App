@@ -4,7 +4,8 @@ const BASE = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/
 
 export async function fetchTimeline(location, { unitGroup = "metric" } = {}) {
 
-    const key = "CQFX6K4NG3K3VKECYBU7EDXKA";
+    // const key = "CQFX6K4NG3K3VKECYBU7EDXKA";
+    const key = "JHW97WUXV8FALBFURQM78NRC4";
     const url = `${BASE}/${encodeURIComponent(location)}?unitGroup=${unitGroup}&key=${key}&contentType=json`;
 
     const res = await fetch(url);
