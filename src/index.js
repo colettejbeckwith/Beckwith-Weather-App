@@ -29,12 +29,13 @@ async function loadByCity(city) {
         const raw = await fetchTimeline(city, { unitGroup });
         const weather = normalizeVisualCrossing(raw, { unitGroup });
         currentCity = weather.location.name;
-        console.log(weather.location.name);
-        searchInput.placeholder = city;
+        // console.log(weather.location.name);
+        searchInput.placeholder = weather.location.name;
         renderWeather(weather, unitGroup);
         locationQuery = false;
         displayGif(weather.current.icon, currentCity);
     } catch (e) {
+        displayGif("error", "");
         renderError(e.message || "Something went wrong.");
     }
 }
@@ -74,8 +75,10 @@ function toggleUnits() {
 
 
 
-searchInput.addEventListener("keydown", (e) => {
+searchInput.addEventListener("keydown", async (e) => {
     if (e.key !== "Enter") return;
+
+    e.preventDefault();
 
     const city = capitalizeWords(searchInput.value.trim());
     if (!city) return;
@@ -84,19 +87,23 @@ searchInput.addEventListener("keydown", (e) => {
     currentCity = city;
     loadByCity(city);
 
-    e.preventDefault();
+    
+    searchInput.blur();
     searchInput.value = "";
+
+    await loadByCity(city);
     
 });
 
-searchInput.addEventListener("blur", () => {
-    const city = searchInput.value.trim();
-    if (!city) return;
+// searchInput.addEventListener("blur", () => {
+//     const city = searchInput.value.trim();
+//     if (!city) return;
 
-    locationQuery = false;
-    currentCity = city;
-    loadByCity(city);
-});
+//     locationQuery = false;
+//     currentCity = city;
+//     // searchInput.blur();
+//     loadByCity(city);
+// });
 
 document.getElementById('change-units-button').addEventListener('click', () => {
     toggleUnits();

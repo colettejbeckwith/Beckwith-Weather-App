@@ -2,6 +2,7 @@
 
 export function renderLoading() {
 
+    document.getElementById('weather-gif').src = "";
     document.getElementById('city-name').textContent = "Loading...";
     document.getElementById('city-temp').textContent = ""
     document.getElementById('city-feels-like').textContent = "";
