@@ -15,10 +15,13 @@ html, body {
 }
 
 body {
-    height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     color: whitesmoke;
 
     background: url(./images/bluesky.jpg);
@@ -36,7 +39,7 @@ img {
 .container {
     width: 100%;
     margin: 0 auto;
-    height: 100%;
+    /* height: 100%; */
     min-height: 0;
 
     flex: 1;
@@ -107,18 +110,14 @@ img {
 .city-box {
     width: 100%;
     display: flex;
-    /* flex-direction: row; */
     flex-direction: column;
     justify-content: center;
     gap: 45px;
-    /* font-size: xx-large; */
 }
 
 .city-name {
     font-size: clamp(1.5rem, 5vw, 3.5rem);
     white-space: nowrap;
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
 }
 
 .weather-box {
@@ -146,7 +145,6 @@ img {
 
 .gif-box {
     height: 360px;
-    /* height: 200px; */
     display: grid;
     grid-template-rows: auto 1fr;
     justify-content: center;
@@ -155,12 +153,11 @@ img {
     flex-direction: column;
     gap: 12px;
     padding: 12px 0;
-    /* background-color: green; */
 }
 
 .gif-frame {
-    width: 320px;                  /* fixed width */
-    height: 220px;                 /* fixed height */
+    width: 320px;
+    height: 220px;                
     overflow: hidden;
     border-radius: 25%;
     display: flex;
@@ -170,18 +167,10 @@ img {
 
 
 .weather-gif {
-    /* height: 100%; */
-    /* width: auto; */
-    /* max-height:  60%; */
-    /* max-width: 70%; */
-    /* border-radius: 25%; */
-    /* object-fit: contain; */
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    /* text-align: center; */
-    /* background-color: red; */
 }
 
 .city-conditions {
@@ -206,27 +195,34 @@ img {
     font-weight: bold;
 }
 
+@media (max-height: 750px) {
+  .header-title {
+    padding: 18px 0 10px;
+    font-size: x-large;
+  }
 
+  .weather-body {
+    gap: 12px;
+    grid-template-rows: 72px auto 1fr auto;
+  }
 
+  .city-box {
+    gap: 16px;
+  }
 
+  .city-temp {
+    font-size: 3rem;
+  }
 
-/* .header, .footer {
-    background-color: red;
+  .gif-box {
+    height: 240px;
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .gif-frame {
+    width: 220px;
+    height: 140px;
+  }
 }
-
-.location-box {
-    background-color: pink;
-}
-
-.city-box {
-    background-color: chocolate;
-}
-
-.weather-box {
-    background-color: coral;
-}
-
-.gif-box {
-    background-color: blueviolet;
-} */
 
