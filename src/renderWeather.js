@@ -1,7 +1,5 @@
 // const div = document.getElementById('weather-div');
 
-let unitGroup = "metric"
-
 export function renderLoading() {
 
     document.getElementById('city-name').textContent = "Loading...";
@@ -13,7 +11,7 @@ export function renderLoading() {
 
 }
 
-export function renderError(message = "Unable to load weather data.") {
+export function renderError(message = "No weather data.") {
 
     document.getElementById('city-name').textContent = "ERROR";
     document.getElementById('city-temp').textContent = ""
@@ -31,12 +29,12 @@ export function renderWeather(weather, unitGroup) {
     document.getElementById('city-conditions').textContent = weather.current.conditions;
 
     if (unitGroup == "metric") {
-        document.getElementById('city-temp').textContent = weather.current.temp + "°ᶜ"
-        document.getElementById('city-feels-like').textContent = weather.current.feelsLike + "°ᶜ";
+        document.getElementById('city-temp').textContent = weather.current.temp + "°C"
+        document.getElementById('city-feels-like').textContent = weather.current.feelsLike + "°C";
         document.getElementById('city-wind-speed').textContent = weather.current.windSpeed + " KPH";
     } else if (unitGroup == "us") {
-        document.getElementById('city-temp').textContent = weather.current.temp + "°ᶠ"
-        document.getElementById('city-feels-like').textContent = weather.current.feelsLike + "°ᶠ";
+        document.getElementById('city-temp').textContent = weather.current.temp + "°F"
+        document.getElementById('city-feels-like').textContent = weather.current.feelsLike + "°F";
         document.getElementById('city-wind-speed').textContent = weather.current.windSpeed + " MPH";
     
     }

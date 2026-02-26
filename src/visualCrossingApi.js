@@ -12,7 +12,7 @@ export async function fetchTimeline(location, { unitGroup = "metric" } = {}) {
     
     if (!res.ok) {
         const text = await res.text().catch(() => "");
-        throw new Error(`Weather request failed (${res.status}). ${text}`)
+        throw new Error(`Bad Request`);
     }
 
     return res.json();

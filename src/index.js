@@ -14,13 +14,23 @@ let locationQuery = true;
 
 const searchInput = document.getElementById('location-entry-text-box');
 
+function capitalizeWords(str) {
+    return str
+        .toLowerCase()
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
 
 async function loadByCity(city) {
     try {
         renderLoading();
         const raw = await fetchTimeline(city, { unitGroup });
         const weather = normalizeVisualCrossing(raw, { unitGroup });
-        currentCity = city;
+        currentCity = weather.location.name;
+        console.log(weather.location.name);
+        searchInput.placeholder = city;
         renderWeather(weather, unitGroup);
         locationQuery = false;
         displayGif(weather.current.icon, currentCity);
@@ -39,15 +49,19 @@ async function loadByCurrentLocation() {
                 const raw = await fetchTimelineByCoords(latitude, longitude, { unitGroup });
                 const weather = normalizeVisualCrossing(raw, { unitGroup });
                 currentCity = weather.location.name;
-                weather.location.name = "Current Location";
+                weather.location.name = "Your Current Location";
+                
                 renderWeather(weather, unitGroup);
                 displayGif(weather.current.icon, currentCity);
             } catch (e) {
-                renderError(e.message || "Couldn't load weather for your location.");
+                displayGif("error", "");
+                renderError(e.message || "Not Found");
             }
         },
         () => {
-            renderError("Location permission denied. Search by city instead.");
+            displayGif("error", "");
+            renderError("Permission denied.");
+
         }
     );
 }
@@ -63,7 +77,7 @@ function toggleUnits() {
 searchInput.addEventListener("keydown", (e) => {
     if (e.key !== "Enter") return;
 
-    const city = searchInput.value.trim();
+    const city = capitalizeWords(searchInput.value.trim());
     if (!city) return;
 
     locationQuery = false;
@@ -71,9 +85,8 @@ searchInput.addEventListener("keydown", (e) => {
     loadByCity(city);
 
     e.preventDefault();
-    searchInput.blur();
     searchInput.value = "";
-    searchInput.placeholder = city;
+    
 });
 
 searchInput.addEventListener("blur", () => {
@@ -89,17 +102,23 @@ document.getElementById('change-units-button').addEventListener('click', () => {
     toggleUnits();
 });
 
-document.getElementById('find-current-location-button').addEventListener('click', () => {
+document.getElementById('find-current-location-button').addEventListener('click', async () => {
     locationQuery = true;
     searchInput.value = "";
     searchInput.placeholder = "Enter Location";
+
+    const permission = await navigator.permissions.query({ name: "geolocation" });
+
+    if (permission.state === "denied") {
+      alert(
+        "Location access is blocked. Please enable location services for this site in your browser settings."
+      );
+      return;
+    }
+
     loadByCurrentLocation();
 });
 
-
-
-// loadByCity("Chicago, IL");
-// locationQuery = true;
 searchInput.value = "";
 searchInput.placeholder = "Enter Location";
 loadByCurrentLocation();
