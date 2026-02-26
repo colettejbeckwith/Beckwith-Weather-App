@@ -65,12 +65,11 @@ img {
     background-color: rgba(116, 166, 232, 0.306);
     min-height: 0;
     display: grid;
-    grid-template-rows: 96px auto 1fr auto;
+    grid-template-rows: 72px auto auto minmax(140px, 1fr);
     text-align: center;
-    overflow: visible;
+    /* overflow: visible; */
     justify-content: center;
-
-    gap: 20px;
+    gap: 12px;
 }
 
 .footer {
@@ -143,20 +142,23 @@ img {
 }
 
 .gif-box {
-    height: 360px;
+    /* height: 360px; */
+    height: 100%;
+    min-height: 0;
     display: grid;
     grid-template-rows: auto 1fr;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    flex-direction: column;
-    gap: 12px;
-    padding: 12px 0;
+    gap: 8px;
+    padding: 8px 0;
 }
 
 .gif-frame {
-    width: 320px;
-    height: 220px;                
+    /* width: 320px; */
+    /* height: 220px;                 */
+    width: min(320px, 85vw);
+    height: min(220px, 22vh);
     overflow: hidden;
     border-radius: 25%;
     display: flex;
@@ -196,8 +198,8 @@ img {
 
 @media (max-height: 750px) {
   .header-title {
-    padding: 18px 0 10px;
-    font-size: x-large;
+    padding: 14px 0 8px;
+    font-size: 1.4rem;
   }
 
   .weather-body {
@@ -210,7 +212,11 @@ img {
   }
 
   .city-temp {
-    font-size: 3rem;
+    font-size: 2.6rem;
+  }
+
+  .city-feels-like {
+    font-size: 1.1rem;
   }
 
   .gif-box {
@@ -222,6 +228,10 @@ img {
   .gif-frame {
     width: 220px;
     height: 140px;
+  }
+
+  .humidity-and-windspeed {
+    gap: 30px;
   }
 }
 
