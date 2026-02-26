@@ -20,8 +20,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     color: whitesmoke;
 
     background: url(./images/bluesky.jpg);
@@ -39,12 +38,12 @@ img {
 .container {
     width: 100%;
     margin: 0 auto;
-    /* height: 100%; */
     min-height: 0;
-
+    overflow-y: auto;
     flex: 1;
     display: flex;
     flex-direction: column;
+    -webkit-overflow-scrolling: touch;
 }
 
 .header-title, .footer {
@@ -68,7 +67,7 @@ img {
     display: grid;
     grid-template-rows: 96px auto 1fr auto;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
     justify-content: center;
 
     gap: 20px;
