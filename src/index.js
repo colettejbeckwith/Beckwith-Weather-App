@@ -70,6 +70,7 @@ searchInput.addEventListener("keydown", (e) => {
     currentCity = city;
     loadByCity(city);
 
+    e.preventDefault();
     searchInput.blur();
     searchInput.value = "";
     searchInput.placeholder = city;
