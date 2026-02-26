@@ -10,7 +10,7 @@ import { displayGif } from "./giphyApi.js";
 let unitGroup = "us";
 let currentCity = "";
 
-let locationQuery = false;
+let locationQuery = true;
 
 const searchInput = document.getElementById('location-entry-text-box');
 
@@ -97,4 +97,8 @@ document.getElementById('find-current-location-button').addEventListener('click'
 
 
 
-loadByCity("Chicago, IL");
+// loadByCity("Chicago, IL");
+// locationQuery = true;
+searchInput.value = "";
+searchInput.placeholder = "Enter Location";
+loadByCurrentLocation();
