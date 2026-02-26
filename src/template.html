@@ -1,3 +1,5 @@
+<!-- template.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,43 @@
     <title>Beckwith Weather App</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">
+            <div class="header-title">Beckwith Weather App</div>
+        </div>
+        <div class="weather-body">
+            <div class="location-box">
+                <button id="change-units-button" class="my-location-box"><img src="./images/info.svg" alt="text"></button>
+                <input class="location-entry-text-box" type="text" placeholder="Enter Location">
+                <button id="find-current-location-button" class="my-location-box"><img src="./images/mylocation.svg" alt="text"></button>
+            </div>
+            <div class="city-box">
+                <div class="city-name" id="city-name"></div>
+                <div class="temp-div">
+                    <div class="city-temp" id="city-temp"></div>
+                    <div>Feels like:</div>
+                    <div class="city-feels-like" id="city-feels-like"></div>
+                </div>
+            </div>
+            <div class="weather-box">
+                <div class="humidity-and-windspeed">
+                    <div class="data-div">
+                        <div class="data-title">Humidity</div>
+                        <div class="city-humidity" id="city-humidity"></div>
+                    </div>
+                    <div class="data-div">
+                        <div class="data-title">Wind Speed</div>
+                        <div class="city-wind-speed" id="city-wind-speed"></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="gif-box" id="gif-box">
+                <div class="city-conditions" id="city-conditions"></div>
+                <img class="weather-gif" id="weather-gif" src="#" alt="weather">
+            </div>
+        </div>
+        <div class="footer">© Beckwith Industries</div>
+    </div>
 </body>
 </html>
